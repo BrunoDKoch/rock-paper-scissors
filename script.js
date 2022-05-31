@@ -16,7 +16,7 @@ function game(playerSelection) {
     }
     rounds++;
     if (rounds == 5) {
-        resultText.textContent = "".concat(resultText.textContent, ". Final score: ").concat(playerScore, " (player) vs ").concat(computerScore, " (computer).");
+        resultText.textContent = "".concat(resultText.textContent, " Final score: ").concat(playerScore, " (player) vs ").concat(computerScore, " (computer).");
         noMoreRounds = true;
     }
 }
@@ -36,15 +36,6 @@ function computerPlay() {
     var computerPick = Math.floor(Math.random() * validChoices.length);
     var computerSelection = validChoices[computerPick];
     return computerSelection;
-}
-function playerPlay() {
-    var playerSelection = prompt("Would you like to play rock, paper or scissors?");
-    if (validChoices.includes(playerSelection.toLowerCase())) {
-        return playerSelection;
-    }
-    else {
-        return "wrong";
-    }
 }
 var buttons = document.querySelectorAll('.player-choice');
 var _loop_1 = function (i) {
