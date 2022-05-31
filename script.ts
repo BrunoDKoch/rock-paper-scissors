@@ -5,7 +5,7 @@ function game(playerSelection: string){
 
     const computerSelection: string = computerPlay()
     let result = playRound(playerSelection, computerSelection);
-    resultText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection} ${result}`;
+    resultText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}. ${result}`;
     switch(result){
         case "You win!":
             playerScore++;
@@ -16,7 +16,7 @@ function game(playerSelection: string){
     }
     rounds++
     if (rounds == 5){
-        resultText.textContent = `${resultText.textContent}. Final score: ${playerScore} (player) vs ${computerScore} (computer).`
+        resultText.textContent = `${resultText.textContent} Final score: ${playerScore} (player) vs ${computerScore} (computer).`
         noMoreRounds = true;
     }
 }
