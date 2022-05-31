@@ -1,11 +1,3 @@
-function convertTextToString(btn) {
-    var text = btn.textContent.toString();
-    console.log(text);
-    return text.toLowerCase();
-}
-function addListeners(btn) {
-    btn.addEventListener('click', convertTextToString(btn));
-}
 function game(playerSelection) {
     if (noMoreRounds == true) {
         return;
@@ -19,13 +11,13 @@ function game(playerSelection) {
         case "You lose!":
             computerScore++;
         default:
+            ;
             break;
     }
     rounds++;
     if (rounds == 5) {
         resultText.textContent = "".concat(resultText.textContent, ". Final score: ").concat(playerScore, " (player) vs ").concat(computerScore, " (computer).");
         noMoreRounds = true;
-        return;
     }
 }
 function playRound(playerSelection, computerSelection) {
