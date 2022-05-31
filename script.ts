@@ -5,7 +5,7 @@ function game(playerSelection: string){
 
     const computerSelection: string = computerPlay()
     let result = playRound(playerSelection, computerSelection);
-    resultText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}. ${result}`;
+    resultText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection} ${result}`;
     switch(result){
         case "You win!":
             playerScore++;
@@ -41,15 +41,6 @@ function computerPlay(){
     return computerSelection;
 }
 
-function playerPlay(){
-    const playerSelection: string = prompt("Would you like to play rock, paper or scissors?");
-    if (validChoices.includes(playerSelection.toLowerCase())){
-        return playerSelection;
-    } else{
-    return "wrong";
-    }
-}
-
 let buttons = document.querySelectorAll('.player-choice');
 
 for(let i = 0; i < buttons.length; i++){
@@ -57,7 +48,6 @@ for(let i = 0; i < buttons.length; i++){
 }
 
 const resultText = document.querySelector('.result');
-
 
 const validChoices = ["rock", "paper", "scissors"];
 let playerScore = 0;
