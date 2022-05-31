@@ -1,23 +1,40 @@
-function game(){
-    for(let i = 0; i < 5; i++){
-        let playerSelection: any = playerPlay().toLowerCase()
-        while(playerSelection === "wrong"){
-            playerSelection = playerPlay()
-        }
-        const computerSelection: string = computerPlay()
-        let result = playRound(playerSelection, computerSelection)
-        console.log(`You picked ${playerSelection} and the computer picked ${computerSelection}. ${result}`)
-        switch(result){
-            case "You win!":
-                playerScore++
-            default:
-                break
-        }
+function convertTextToString(btn: any){
+    let text: string = btn.textContent.toString();
+    console.log(text)
+    return text.toLowerCase();
+}
+
+function addListeners(btn: any){
+    btn.addEventListener('click', convertTextToString(btn));
+}
+
+
+function game(playerSelection: string){
+    if (noMoreRounds == true){
+        return;
     }
-    console.log(`Final score: ${playerScore}`)
+
+    const computerSelection: string = computerPlay()
+    let result = playRound(playerSelection, computerSelection)
+    resultText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}. ${result}`
+    switch(result){
+        case "You win!":
+            playerScore++
+        case "You lose!":
+            computerScore++
+        default:
+            break
+    }
+    rounds++
+    if (rounds == 5){
+        resultText.textContent = `${resultText.textContent}. Final score: ${playerScore} (player) vs ${computerScore} (computer).`
+        noMoreRounds = true;
+        return
+    }
 }
 
 function playRound(playerSelection: string, computerSelection: string){
+
     if(playerSelection === computerSelection){
         return "It's a tie!"
     }
@@ -44,6 +61,17 @@ function playerPlay(){
     return "wrong"}
 }
 
-const validChoices = ["rock", "paper", "scissors"]
-let playerScore = 0
-game()
+let buttons = document.querySelectorAll('.player-choice');
+
+for(let i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener('click', function() {game(buttons[i].textContent.toLowerCase())});
+}
+
+const resultText = document.querySelector('.result');
+
+
+const validChoices = ["rock", "paper", "scissors"];
+let playerScore = 0;
+let computerScore = 0;
+let rounds = 0;
+var noMoreRounds = false
